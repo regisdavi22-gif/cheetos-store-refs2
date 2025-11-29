@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cheetos Store Rerfs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .imagem-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .imagem-preview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .imagem-preview img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .imagem-preview img:last-child {
+            margin-bottom: 0;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #FFC107;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <h1>Cheetos Store Rerfs</h1>
+        
+        <div class="form-group">
+            <label for="imagem-1">Selecione a primeira imagem:</label>
+            <input type="file" id="imagem-1" accept="image/*">
+            <div class="imagem-container">
+                <div id="imagem-1-preview" class="imagem-preview"></div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="imagem-2">Selecione a segunda imagem:</label>
+            <input type="file" id="imagem-2" accept="image/*">
+            <div class="imagem-container">
+                <div id="imagem-2-preview" class="imagem-preview"></div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="imagem-3">Selecione a terceira imagem:</label>
+            <input type="file" id="imagem-3" accept="image/*">
+            <div class="imagem-container">
+                <div id="imagem-3-preview" class="imagem-preview"></div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="imagem-4">Selecione a quarta imagem:</label>
+            <input type="file" id="imagem-4" accept="image/*">
+            <div class="imagem-container">
+                <div id="imagem-4-preview" class="imagem-preview"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preview das imagens
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`imagem-${i}`).addEventListener('change', function() {
+                const previewContainer = document.getElementById(`imagem-${i}-preview`);
+                previewContainer.innerHTML = '';
+                
+                if (this.files && this.files.length > 0) {
+                    const file = this.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.cursor = 'pointer';
+                        img.onclick = function() {
+                            window.open(img.src, '_blank');
+                        };
+                        previewContainer.appendChild(img);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
